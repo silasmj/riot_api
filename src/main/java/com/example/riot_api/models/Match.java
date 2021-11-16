@@ -13,24 +13,18 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private String puuid;
+    private long id;
 
     @Column
-    private Long startTime;
-
-    @Column
-    private Long endTime;
-
-    @Column
-    private int queue;
+    private String startDate;
 
     @Column
     private String type;
 
     @Column
-    private int start;
+    private String role;
 
     @Column
-    private int count;
+    private boolean win;
 
 }

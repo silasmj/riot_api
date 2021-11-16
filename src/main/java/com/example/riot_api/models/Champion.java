@@ -12,6 +12,21 @@ public class Champion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private
+    private Long id;
+
+    @Column
+    private String name;
+
+    @Column
+    private String classes;
+
+    @Column
+    private String date;
+
+    @Column
+    private int blueEssence;
+
+    @Column
+    private int RP;
 
 }
