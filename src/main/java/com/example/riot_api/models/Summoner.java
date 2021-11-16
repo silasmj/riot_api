@@ -11,23 +11,25 @@ public class Summoner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private String Id;
+    private Long summonerId;
 
     @Column
     private String accountId;
 
     @Column
-    private int profileIconId;
-
-    @Column
-    private Long revisionDate;
+    private String id;
 
     @Column
     private String name;
 
     @Column
+    private int profileIconId;
+
+    @Column
     private String puuid;
+
+    @Column
+    private Long revisionDate;
 
     @Column
     private Long summonerLevel;
