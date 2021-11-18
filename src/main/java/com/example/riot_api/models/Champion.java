@@ -28,5 +28,4 @@ public class Champion {
 
     @Column
     private int RP;
-
 }

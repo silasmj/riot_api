@@ -10,9 +10,6 @@ import javax.persistence.*;
 public class Summoner {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long summonerId;
-
     @Column
     private String accountId;
 
