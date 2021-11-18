@@ -27,4 +27,5 @@ public class Match {
     @Column
     private boolean win;
 
+
 }
