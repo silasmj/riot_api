@@ -12,11 +12,10 @@ import java.util.List;
 public class Summoners {
 
     @Autowired
-    SummonerRepository summoner;
+    SummonerRepository summonerRepo;
 
     @GetMapping("/summoners")
     public List<Summoner> getSummoners(){
-        return summoner.findAll();
+        return summonerRepo.findAll();
     }
-
 }
