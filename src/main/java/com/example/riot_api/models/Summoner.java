@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 public class Summoner {
 
-    @Id
     @Column
     private String accountId;
 
@@ -22,8 +21,9 @@ public class Summoner {
     @Column
     private int profileIconId;
 
+    @Id
     @Column
-    private String puuid;
+    private String puuid = "xxx";
 
     @Column
     private Long revisionDate;

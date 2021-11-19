@@ -3,37 +3,38 @@ let summonerToSaveToDB = "";
 
 
 
-fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=")
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-b164213e-5117-4005-bd4c-45133c4dadc6")
     .then(response => response.json())
     .then(result => console.log(result))
 
 function inputFetchSummoner() {
     summonerSearch = document.getElementById("search-for-summoner").value;
-    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=")
+    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-b164213e-5117-4005-bd4c-45133c4dadc6")
         .then(response => response.json())
         .then(result => {
-            document.getElementById("summoner-fetch-name").innerText = result.name;
-            document.getElementById("summoner-fetch-accountId").innerText = result.accountId;
-            document.getElementById("summoner-fetch-id").innerText = result.id;
-            document.getElementById("summoner-fetch-profileIconId").innerText = result.profileIconId;
-            document.getElementById("summoner-fetch-puuid").innerText = result.puuid;
-            document.getElementById("summoner-fetch-revisionDate").innerText = result.revisionDate;
-            document.getElementById("summoner-fetch-summonerLevel").innerText = result.summonerLevel;
+            const name = document.getElementById("summoner-fetch-name").innerText = result.name;
+            const accountId = document.getElementById("summoner-fetch-accountId").innerText = result.accountId;
+            const id =  document.getElementById("summoner-fetch-id").innerText = result.id;
+            const profileIcon = document.getElementById("summoner-fetch-profileIconId").innerText = result.profileIconId;
+            const puuid = document.getElementById("summoner-fetch-puuid").innerText = result.puuid;
+            const revisionDate = document.getElementById("summoner-fetch-revisionDate").innerText = result.revisionDate;
+            const summonerLevel = document.getElementById("summoner-fetch-summonerLevel").innerText = result.summonerLevel;
 
             summonerToSaveToDB = {
-                name: result.name,
-                accountId: result.accountId,
-                id: result.id,
-                profileIconId: result.profileIconId,
-                puuid: result.puuid,
-                revisionDate: result.revisionDate,
-                summonerLevel: result.summonerLevel
+                name: name,
+                accountId: accountId,
+                id: id,
+                profileIconId: profileIcon,
+                puuid: puuid,
+                revisionDate: revisionDate,
+                summonerLevel: summonerLevel
             }
         })
 }
 
 function saveSummonerToDB(summonerToSaveToDB) {
-    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=", {
+    console.log(summonerToSaveToDB)
+    fetch(baseURL + "/summoners", {
         method: "POST",
         headers: { "Content-type": "application/json; charset=UTF-8" },
         body: JSON.stringify(summonerToSaveToDB)
