@@ -1,6 +1,7 @@
 package com.example.riot_api.models;
 
 
+import com.sun.istack.Nullable;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,5 +28,13 @@ public class Match {
     @Column
     private boolean win;
 
+    @ManyToOne
+    @JoinColumn(name = "puuid")
+    @Nullable
+    private Summoner summoner;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "champion_id", nullable = false)
+    private Champion champion;
 
 }

@@ -3,6 +3,7 @@ package com.example.riot_api.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Table(name="champions")
@@ -28,4 +29,11 @@ public class Champion {
 
     @Column
     private int RP;
+
+    @OneToMany(
+            mappedBy = "champion",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private Set<Match> matches;
 }

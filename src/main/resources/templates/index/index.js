@@ -1,15 +1,13 @@
 let summonerSearch = "Doublelift";
 let summonerToSaveToDB = "";
 
-
-
-fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-b164213e-5117-4005-bd4c-45133c4dadc6")
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-bff7a00c-1b6e-47e0-b982-167e3e022a55")
     .then(response => response.json())
     .then(result => console.log(result))
 
 function inputFetchSummoner() {
     summonerSearch = document.getElementById("search-for-summoner").value;
-    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-b164213e-5117-4005-bd4c-45133c4dadc6")
+    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-bff7a00c-1b6e-47e0-b982-167e3e022a55")
         .then(response => response.json())
         .then(result => {
             const name = document.getElementById("summoner-fetch-name").innerText = result.name;
@@ -33,7 +31,6 @@ function inputFetchSummoner() {
 }
 
 function saveSummonerToDB(summonerToSaveToDB) {
-    console.log(summonerToSaveToDB)
     fetch(baseURL + "/summoners", {
         method: "POST",
         headers: { "Content-type": "application/json; charset=UTF-8" },

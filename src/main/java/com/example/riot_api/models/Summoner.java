@@ -1,8 +1,10 @@
 package com.example.riot_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Table(name="summoners")
@@ -30,5 +32,13 @@ public class Summoner {
 
     @Column
     private Long summonerLevel;
+
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "summoner",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private Set<Match> matches;
 
 }
