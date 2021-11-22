@@ -17,27 +17,11 @@
 <p id="summoner-fetch-summonerLevel"></p>
 
 <button onclick="saveSummonerToDB(summonerToSaveToDB)">Save</button>
-<button onclick="createAMatchCard(matchToSaveToDB)">New match</button>
+<a href="../matches/matches.html">
+    <button>Matches on summoner</button>
+</a>
 
-<div id="create-match-wrapper">
-    <input id="create-match-startDate" type="datetime-local" placeholder="Start date">
-    <select id="create-match-type" placeholder="Match Type">
-        <option>ARAM</option>
-        <option>Normal</option>
-        <option>Ranked</option>
-    </select>
-    <select id="create-match-role">
-        <option>Top</option>
-        <option>Jungle</option>
-        <option>Middle</option>
-        <option>ADC</option>
-        <option>Support</option>
-    </select>
-    <select id="create-match-win">Win/Loss
-        <option>Win</option>
-        <option>Loss</option>
-    </select>
-</div>
+
 
 <script src="../global.js"></script>
 <script src="./index.js"></script>

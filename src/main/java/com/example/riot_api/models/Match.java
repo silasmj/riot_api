@@ -28,6 +28,10 @@ public class Match {
     @Column
     private boolean win;
 
+    @Enumerated(value = EnumType.STRING)
+    @Column
+    private Honor honor;
+
     @ManyToOne
     @JoinColumn(name = "puuid")
     @Nullable

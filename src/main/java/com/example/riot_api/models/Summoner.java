@@ -41,8 +41,4 @@ public class Summoner {
     )
     private Set<Match> matches;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column
-    private String honor;
-
 }

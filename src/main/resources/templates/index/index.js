@@ -3,13 +3,13 @@ let summonerToSaveToDB = "";
 
 
 
-fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-032898cb-2fde-47a7-9b1f-141e59314fcb")
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?RGAPI-a8768af9-1115-44d2-8a3b-79a08e7c948f")
     .then(response => response.json())
     .then(result => console.log(result))
 
 function inputFetchSummoner() {
     summonerSearch = document.getElementById("search-for-summoner").value;
-    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-032898cb-2fde-47a7-9b1f-141e59314fcb")
+    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-a8768af9-1115-44d2-8a3b-79a08e7c948f")
         .then(response => response.json())
         .then(result => {
             const name = document.getElementById("summoner-fetch-name").innerText = result.name;

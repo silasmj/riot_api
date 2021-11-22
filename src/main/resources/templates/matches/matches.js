@@ -5,6 +5,11 @@ fetch(baseURL + "/matches")
     .then(result => {
         result.map(createAMatchCard)
     });
+fetch(baseURL + "/summoners")
+    .then(resp => resp.json())
+    .then(res => {
+        createNewMatch(res)
+    })
 
 const matchCardDiv = document.getElementById("create-match-div");
 
@@ -15,11 +20,12 @@ function createAMatchCard(match) {
     createAMatchCard(matchCardDiv, match);
 }
 
-function createNewMatch() {
+function createNewMatch(result) {
     const startDate = document.getElementById("create-match-startDate").value;
     const role = document.getElementById("create-match-role").value;
     const type = document.getElementById("create-match-type").value;
     const win = document.getElementById("create-match-win").value;
+   // const summoner = document.getElementById("create-match-summoner").innerHTML = `<select>${escapeHTML(result.name)}</select>`;
 
     const newMatch = {
         startDate: startDate,
@@ -51,6 +57,4 @@ fetch(baseURL + "/matches", {
         } else {
             console.log("Match not created.", response.status);
         }
-
-
 });
