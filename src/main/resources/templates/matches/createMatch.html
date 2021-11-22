@@ -6,5 +6,30 @@
 </head>
 <body>
 
+<h1>Matches</h1>
+
+<button onclick="createAMatchCard(matchToSaveToDB)">New match</button>
+
+<div id="create-match-wrapper">
+    <input id="create-match-startDate" type="date" placeholder="Start date">
+    <select id="create-match-type" placeholder="Match Type">
+        <option>ARAM</option>
+        <option>Normal</option>
+        <option>Ranked</option>
+    </select>
+    <select id="create-match-role">
+        <option>Top</option>
+        <option>Jungle</option>
+        <option>Middle</option>
+        <option>ADC</option>
+        <option>Support</option>
+    </select>
+    <select id="create-match-win">Win/Loss
+        <option>Win</option>
+        <option>Loss</option>
+    </select>
+    <select id="create-match-summoner"></select>
+</div>
+
 </body>
 </html>
