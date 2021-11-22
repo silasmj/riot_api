@@ -2,25 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Frontpage</title>
+    <title>Matches</title>
 </head>
 <body>
-<input id="search-for-summoner" type="text">
-<button onclick="inputFetchSummoner()">Search</button>
+<h1>Matches</h1>
 
-<h3 id="summoner-fetch-name"></h3>
-<p id="summoner-fetch-accountId"></p>
-<p id="summoner-fetch-id"></p>
-<p id="summoner-fetch-profileIconId"></p>
-<p id="summoner-fetch-puuid"></p>
-<p id="summoner-fetch-revisionDate"></p>
-<p id="summoner-fetch-summonerLevel"></p>
-
-<button onclick="saveSummonerToDB(summonerToSaveToDB)">Save</button>
 <button onclick="createAMatchCard(matchToSaveToDB)">New match</button>
 
 <div id="create-match-wrapper">
-    <input id="create-match-startDate" type="datetime-local" placeholder="Start date">
+    <input id="create-match-startDate" type="date" placeholder="Start date">
     <select id="create-match-type" placeholder="Match Type">
         <option>ARAM</option>
         <option>Normal</option>
