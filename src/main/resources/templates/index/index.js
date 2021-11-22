@@ -1,9 +1,7 @@
 let summonerSearch = "Doublelift";
 let summonerToSaveToDB = "";
 
-
-
-fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?RGAPI-a8768af9-1115-44d2-8a3b-79a08e7c948f")
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-a8768af9-1115-44d2-8a3b-79a08e7c948f")
     .then(response => response.json())
     .then(result => console.log(result))
 
@@ -29,6 +27,10 @@ function inputFetchSummoner() {
                 revisionDate: revisionDate,
                 summonerLevel: summonerLevel
             }
+            document.getElementById("button-matches").innerHTML = `
+                <a href="../matches/matches.html?puuid=${result.puuid}"><button>Matches</button></a>
+            `
+
         })
 }
 
@@ -42,6 +44,8 @@ function saveSummonerToDB(summonerToSaveToDB) {
         .then(result =>
             console.log(result))
 }
+
+
 
 
 
