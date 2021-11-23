@@ -5,9 +5,10 @@ const matchesTableBody = document.getElementById("galleries-tbody");
 
 
 fetch(baseURL + "/matches/" + puuid)
-    .then(response => response.json)
+    .then(response => response.json())
         .then(result => {
-            result.map(createMatchTableRow)
+            console.log(result)
+            //result.map(createMatchTableRow)
         })
 
 function createMatchTableRow(matches) {

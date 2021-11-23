@@ -11,6 +11,10 @@ import java.util.Set;
 @Entity
 public class Summoner {
 
+    @Id
+    @Column
+    private Long generatedId;
+
     @Column
     private String accountId;
 
@@ -23,7 +27,6 @@ public class Summoner {
     @Column
     private int profileIconId;
 
-    @Id
     @Column
     private String puuid = "xxx";
 
