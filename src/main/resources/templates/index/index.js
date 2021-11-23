@@ -3,13 +3,13 @@ let summonerToSaveToDB = "";
 
 
 
-fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?RGAPI-a8768af9-1115-44d2-8a3b-79a08e7c948f")
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-6197bc29-d410-4810-9d3b-ea1d9481ca71")
     .then(response => response.json())
     .then(result => console.log(result))
 
 function inputFetchSummoner() {
     summonerSearch = document.getElementById("search-for-summoner").value;
-    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-a8768af9-1115-44d2-8a3b-79a08e7c948f")
+    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-6197bc29-d410-4810-9d3b-ea1d9481ca71")
         .then(response => response.json())
         .then(result => {
             const name = document.getElementById("summoner-fetch-name").innerText = result.name;
@@ -32,6 +32,13 @@ function inputFetchSummoner() {
         })
 }
 
+function showMatches(result) {
+    console.log(result)
+    document.getElementById("button-matches").innerHTML = `
+                <a href="../matches/matches.html?generatedId=${result.generatedId}"><button>Matches</button></a>
+            `
+}
+
 function saveSummonerToDB(summonerToSaveToDB) {
     console.log(summonerToSaveToDB)
     fetch(baseURL + "/summoners", {
@@ -40,7 +47,7 @@ function saveSummonerToDB(summonerToSaveToDB) {
         body: JSON.stringify(summonerToSaveToDB)
     }).then(response => response.json())
         .then(result =>
-            console.log(result))
+            showMatches(result))
 }
 
 

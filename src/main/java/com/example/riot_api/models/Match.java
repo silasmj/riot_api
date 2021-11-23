@@ -39,7 +39,6 @@ public class Match {
 
     @ManyToOne
     @JoinColumn(name = "champion_id")
-    @Nullable
     private Champion champion;
 
 

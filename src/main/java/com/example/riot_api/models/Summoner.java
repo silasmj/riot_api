@@ -12,7 +12,7 @@ import java.util.Set;
 public class Summoner {
 
     @Id
-    @Column
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long generatedId;
 
     @Column
