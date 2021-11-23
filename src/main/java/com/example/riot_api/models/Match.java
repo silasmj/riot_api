@@ -14,7 +14,7 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private String id;
+    private Long id;
 
     @Column
     private String startDate;
@@ -33,11 +33,13 @@ public class Match {
     private Honor honor;
 
     @ManyToOne
-    @JoinColumn(name = "generatedId")
+    @JoinColumn(name = "summoner_id")
+    @Nullable
     private Summoner summoner;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "champion_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "champion_id")
+    @Nullable
     private Champion champion;
 
 

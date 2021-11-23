@@ -1,5 +1,6 @@
 package com.example.riot_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,10 +31,7 @@ public class Champion {
     @Column
     private int RP;
 
-    @OneToMany(
-            mappedBy = "champion",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
-    )
+    @JsonIgnore
+    @OneToMany(mappedBy = "champion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Match> matches;
 }

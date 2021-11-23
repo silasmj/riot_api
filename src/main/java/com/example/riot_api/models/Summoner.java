@@ -37,11 +37,7 @@ public class Summoner {
     private Long summonerLevel;
 
     @JsonIgnore
-    @OneToMany(
-            mappedBy = "summoner",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
-    )
+    @OneToMany(mappedBy = "summoner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Match> matches;
 
 
