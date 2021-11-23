@@ -1,6 +1,6 @@
 const queryString = window.location.search;
 const URLParams = new URLSearchParams(queryString);
-const puuid = URLParams.get("puuid");
+let puuid = URLParams.get("puuid");
 const matchesTableBody = document.getElementById("galleries-tbody");
 
 
@@ -12,7 +12,8 @@ fetch(baseURL + "/matches/" + puuid)
 
 function createMatchTableRow(matches) {
     const matchesTableRow = document.createElement("tr");
-    matchesTableRow.id = matches.puuid;
+    matchesTableRow.id = matches.id;
+    puuid = matches.puuid;
 
     matchesTableBody.appendChild(matchesTableRow);
 
@@ -35,6 +36,9 @@ function constructMatchesTableRow(matchesTableRow, matches) {
     </td>
     <td>
         <p class="row-match-champions">${escapeHTML(matches.champion)}</p>
+    </td>
+    <td>
+        <p class="row-match-puuid">${escapeHTML(matches.puuid)}</p>
     </td>
     `;
 }
