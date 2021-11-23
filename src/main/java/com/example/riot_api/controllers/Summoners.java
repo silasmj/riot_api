@@ -19,7 +19,7 @@ public class Summoners {
     }
 
     @GetMapping("/summoners/{id}")
-    public Summoner getSummonerById(@PathVariable String id){
+    public Summoner getSummonerById(@PathVariable Long id){
         return summoner.getById(id);
     }
 
@@ -29,7 +29,7 @@ public class Summoners {
     }
 
     @DeleteMapping("/summoners/{id}")
-    public void deleteSummonerById(@PathVariable String id) {
+    public void deleteSummonerById(@PathVariable Long id) {
         summoner.deleteById(id);
     }
 

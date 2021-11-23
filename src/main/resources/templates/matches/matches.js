@@ -1,10 +1,10 @@
 const queryString = window.location.search;
 const URLParams = new URLSearchParams(queryString);
-let puuid = URLParams.get("puuid");
+let generatedId = URLParams.get("generatedId");
 const matchesTableBody = document.getElementById("galleries-tbody");
 
 
-fetch(baseURL + "/matches/" + puuid)
+fetch(baseURL + "/matches/" + generatedId)
     .then(response => response.json())
         .then(result => {
             console.log(result)
