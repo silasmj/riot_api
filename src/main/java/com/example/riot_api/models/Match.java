@@ -40,4 +40,5 @@ public class Match {
     @JoinColumn(name = "champion_id", nullable = false)
     private Champion champion;
 
+
 }

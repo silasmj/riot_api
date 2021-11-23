@@ -8,7 +8,7 @@
 
 <h1>Matches</h1>
 
-<button onclick="createAMatchCard(matchToSaveToDB)">New match</button>
+<button onclick="createAMatchCard(matchToSaveToDB)">Save match</button>
 
 <div id="create-match-wrapper">
     <input id="create-match-startDate" type="date" placeholder="Start date">
@@ -28,7 +28,11 @@
         <option>Win</option>
         <option>Loss</option>
     </select>
-    <select id="create-match-summoner"></select>
+    <select id="create-match-champion">Champion
+        <option>Zed</option>
+        <option>Kayn</option>
+    </select>
+
 </div>
 
 </body>
