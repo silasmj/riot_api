@@ -4,7 +4,15 @@ fetch(baseURL + "/matches")
     .then(response => response.json())
         .then(result => {
             result.map(createMatchTableRow)
+            filteredResult = result;
         })
+
+document.getElementById("name-search").addEventListener("input", handleSearchName)
+
+function handleSearchName(event) {
+    matchesTableBody.innerHTML = "";
+    filteredResult.filter(result => result.name.toLowerCase().includes(event.target.value.toLowerCase())).map(createMatchTableRow);
+}
 
 function createMatchTableRow(matches) {
     const matchesTableRow = document.createElement("tr");
@@ -33,10 +41,10 @@ function constructMatchesTableRow(matchesTableRow, matches) {
         <p class="row-match-honor">${matches.honor}</p>
     </td>
     <td>
-        <p class="row-match-generatedid">${matches.summoner.generatedId}</p>
+        <p class="row-match-generatedid">${matches.summoner.name}</p>
     </td>
     <td>
-        <p class="row-match-champion">${matches.champion.id}</p>
+        <p class="row-match-champion">${matches.champion.name}</p>
     </td>
     <td>
          <button id="update-button-${matches.id}">🥯</button>            
@@ -58,73 +66,4 @@ function deleteMatch(matchesId) {
             console.log(response.status);
         }
     });
-}
-function updateMatch(matches) {
-    const tableRowToUpdate = document.getElementById(matches.id);
-
-    tableRowToUpdate.innerHTML = `
-        <td>
-            <input id="update-matches-date-${matches.id}" value="${matches.startDate}">
-        </td>
-        <td>
-            <input id="update-matches-type-${matches.id}" value="${matches.type}">
-        </td>
-       <td>
-            <input id="update-matches-role-${matches.id}" value="${matches.role}">
-       </td>
-        <td>
-            <input id="update-matches-result-${matches.id}" value="${matches.result}">
-       </td>
-        <td>
-            <input id="update-matches-honor-${matches.id}" value="${matches.honor}">
-       </td>
-        <td>
-            <input id="update-matches-summoner-${matches.id}" value="${matches.summoner.generatedId}">
-       </td>
-        <td>
-            <input id="update-matches-champion-${matches.id}" value="${matches.champion.id}">
-       </td>
-       <td>
-            <button id="cancel-update-${matches.id}">✖️</button>
-            <button onclick="updateMatchesInBackend(${matches.id})">✅</button>
-       </td>
-       <td>
-            <button onclick="deleteMatch(${matches.id})">❌</button>
-       </td>
-    `;
-    document.getElementById(`cancel-update-${matches.id}`)
-        .addEventListener("click", () => undoUpdateTableRow(matches));
-
-}
-function undoUpdateTableRow(matches) {
-    const matchesTableRow = document.getElementById(matches.id);
-
-    constructMatchesTableRow(matchesTableRow, matches);
-}
-
-function updateMatchesInBackend(matchesId) {
-
-    const tableRowToUpdate = document.getElementById(matchesId);
-
-    const matchToUpdate = {
-        id: matchesId,
-        startDate: document.getElementById(`update-matches-date-${matchesId}`).value,
-        type: document.getElementById(`update-matches-type-${matchesId}`).value,
-        role: document.getElementById(`update-matches-role${matchesId}`).value,
-        result: document.getElementById(`update-matches-result-${matchesId}`).value,
-        honor:  document.getElementById(`update-matches-honor-${matchesId}`),
-        summoner: document.getElementById(`update-matches-summoner-${matchesId}`),
-        champion: document.getElementById(`update-matches-champion-${matchesId}`)
-    };
-
-    fetch(baseURL + "/matches/" + matchesId, {
-        method: "PATCH",
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-        body: JSON.stringify(matchToUpdate)
-    }).then(response => {
-        if (response.status === 200) {
-            constructMatchesTableRow(tableRowToUpdate, matchToUpdate);
-        }
-    });
-
 }

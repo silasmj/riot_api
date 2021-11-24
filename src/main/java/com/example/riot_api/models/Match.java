@@ -26,7 +26,7 @@ public class Match {
     private String role;
 
     @Column
-    private boolean win;
+    private String win;
 
     @Enumerated(value = EnumType.STRING)
     @Column
