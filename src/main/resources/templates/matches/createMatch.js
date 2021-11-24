@@ -1,53 +1,16 @@
-let matchToSaveToDB = "";
-
-const matchFormParentDiv = document.getElementById("create-match-form");
 const queryString = window.location.search;
 const URLParams = new URLSearchParams(queryString);
-const puuid = URLParams.get("puuid");
+let queryId = URLParams.get("generatedId");
 
-fetch(baseURL + "/matches/" + puuid)
-    .then(response => response.json())
-    .then(result => {
-        result.map(createAMatchCard)
-    });
-
-function showMatchForm() {
-    matchFormParentDiv.innerHTML = createMatchForm;
-}
-
-const createMatchForm = `<div>
-    <label>Start Date</label>
-    <input id="create-match-startDate" placeholder="start date">
-    <label>Role</label>
-    <input id="create-match-role" placeholder="role">    
-    <label>Type</label>
-    <input id="create-match-type" placeholder="type">    
-    <label>Win</label>
-    <input id="create-match-win" placeholder="win">
-    <label>Champion</label>
-    <input id="create-match-champion" placeholder="champion">
-    <label>Summoner</label>
-    <input id="create-match-summoner" placeholder="summoner">
-    <button onclick="createMatch()">Create A New Match</button>
-</div>`;
-
-
-function createAMatchCard(match) {
-    const matchCardDiv = document.createElement("div");
-
-    matchToSaveToDB.appendChild(matchCardDiv);
-    createAMatchCard(matchCardDiv, match);
-}
 
 function createMatch() {
-    const matchToCreate = {
-        startDate: document.getElementById("create-match-startDate").value,
-        role: document.getElementById("create-match-role").value,
-        type: document.getElementById("create-match-type").value,
-        win: document.getElementById("create-match-win").value,
-        champion: document.getElementById("create-match-champion").value,
-        summoner: puuid
-    };
+
+    const startDate = document.getElementById("create-match-startDate").value;
+    const role = document.getElementById("create-match-role").value;
+    const type = document.getElementById("create-match-type").value;
+    const win = document.getElementById("create-match-win").value;
+    const champion = document.getElementById("create-match-champion").value
+};
 
     const newMatch = {
         startDate: startDate,
@@ -55,7 +18,7 @@ function createMatch() {
         type: type,
         win: win,
         champion: champion,
-        summoner: summoner
+        generatedId: queryId
     };
 
     fetch(baseURL + "/matches", {
@@ -63,13 +26,13 @@ function createMatch() {
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         },
-        body: JSON.stringify(matchToCreate)
+        body: JSON.stringify(newMatch)
     })
         .then(response => {
             if (response.status === 200) {
-                createMatch(newMatch);
+                console.log(response)
+                /*createMatch(newMatch);*/
             } else {
                 console.log("Match not created.", response.status);
             }
         });
-}

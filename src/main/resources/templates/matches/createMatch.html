@@ -8,10 +8,10 @@
 
 <h1>Matches</h1>
 
-<button onclick="createAMatchCard(matchToSaveToDB)">Save match</button>
+<button onclick="createMatch">Save match</button>
 
 <div id="create-match-wrapper">
-    <input id="create-match-startDate" type="date" placeholder="Start date">
+    <input id="create-match-startDate" type="text" placeholder="Start date">
     <select id="create-match-type" placeholder="Match Type">
         <option>ARAM</option>
         <option>Normal</option>
@@ -34,6 +34,11 @@
     </select>
 
 </div>
+<script src="../global.js"></script>
+<script src="../index/index.js"></script>
+<script src="./createMatch.js"></script>
+<script src="./matches.js"></script>
+<script src="./editMatch.js"></script>
 
 </body>
 </html>
