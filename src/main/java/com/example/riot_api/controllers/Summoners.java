@@ -25,6 +25,7 @@ public class Summoners {
 
     @PostMapping("/summoners")
     public Summoner addSummoner(@RequestBody Summoner newSummoner){
+        newSummoner.setId(null);
         return summoner.save(newSummoner);
     }
 

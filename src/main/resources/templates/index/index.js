@@ -55,9 +55,7 @@ function createSummonerTableRow(summoner) {
 function constructSummonersTableRow(summonersTableRow, summoner) {
     summonersTableRow.innerHTML = `
             <td>
-                <a href="../matches/matches.html?generatedId=${summoner.generatedId}">
-                    <p class="row-summoners-generated-id">${summoner.generatedId}</p>
-                </a>
+                <p class="row-summoners-generated-id">${summoner.generatedId}</p>
             </td>
             <td>
                 <p class="row-summoners-accountId">${summoner.accountId}</p>
@@ -81,8 +79,8 @@ function constructSummonersTableRow(summonersTableRow, summoner) {
                 <p class="row-summoners-summoner-level">${summoner.summonerLevel}</p>
             </td>
             `;
-
 }
+
 
 
 
