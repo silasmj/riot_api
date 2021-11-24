@@ -30,6 +30,8 @@ public class Matches {
 
     @PostMapping("/matches")
     public Match addMatch(@RequestBody Match newMatch){
+        newMatch.setId(null);
+
         return match.save(newMatch);
     }
 
