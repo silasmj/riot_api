@@ -1,54 +1,91 @@
-let summonerSearch = "Doublelift";
-let summonerToSaveToDB = "";
+const key = "RGAPI-b9ad3ebf-a01d-4e52-a690-2137c6d4fa55"
+const summonersTableBody = document.getElementById("summoners-tbody");
 
 
-
-fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-6197bc29-d410-4810-9d3b-ea1d9481ca71")
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/doublelift?api_key=" + key)
     .then(response => response.json())
-    .then(result => console.log(result))
+    .then(result => saveToDb(result))
 
-function inputFetchSummoner() {
-    summonerSearch = document.getElementById("search-for-summoner").value;
-    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearch + "?api_key=RGAPI-6197bc29-d410-4810-9d3b-ea1d9481ca71")
-        .then(response => response.json())
-        .then(result => {
-            const name = document.getElementById("summoner-fetch-name").innerText = result.name;
-            const accountId = document.getElementById("summoner-fetch-accountId").innerText = result.accountId;
-            const id =  document.getElementById("summoner-fetch-id").innerText = result.id;
-            const profileIcon = document.getElementById("summoner-fetch-profileIconId").innerText = result.profileIconId;
-            const puuid = document.getElementById("summoner-fetch-puuid").innerText = result.puuid;
-            const revisionDate = document.getElementById("summoner-fetch-revisionDate").innerText = result.revisionDate;
-            const summonerLevel = document.getElementById("summoner-fetch-summonerLevel").innerText = result.summonerLevel;
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/deforen?api_key=" + key)
+    .then(response => response.json())
+    .then(result => saveToDb(result))
 
-            summonerToSaveToDB = {
-                name: name,
-                accountId: accountId,
-                id: id,
-                profileIconId: profileIcon,
-                puuid: puuid,
-                revisionDate: revisionDate,
-                summonerLevel: summonerLevel
-            }
-        })
-}
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/gubz?api_key=" + key)
+    .then(response => response.json())
+    .then(result => saveToDb(result))
 
-function showMatches(result) {
-    console.log(result)
-    document.getElementById("button-matches").innerHTML = `
-                <a href="../matches/matches.html?generatedId=${result.generatedId}"><button>Matches</button></a>
-            `
-}
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/lemonjuicee?api_key=" + key)
+    .then(response => response.json())
+    .then(result => saveToDb(result))
 
-function saveSummonerToDB(summonerToSaveToDB) {
-    console.log(summonerToSaveToDB)
+fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/captainzeus?api_key=" + key)
+    .then(response => response.json())
+    .then(result => saveToDb(result))
+
+function saveToDb(result) {
     fetch(baseURL + "/summoners", {
         method: "POST",
         headers: { "Content-type": "application/json; charset=UTF-8" },
-        body: JSON.stringify(summonerToSaveToDB)
+        body: JSON.stringify(result)
     }).then(response => response.json())
-        .then(result =>
-            showMatches(result))
+        .then(summ => {
+                const summonerCreatedInDB = {
+                    generatedId: summ.generatedId,
+                    accountId: summ.accountId,
+                    id: summ.id,
+                    name: summ.name,
+                    profileIconId: summ.profileIconId,
+                    puuid: summ.puuid,
+                    revisionDate: summ.revisionDate,
+                    summonerLevel: summ.summonerLevel
+                }
+                createSummonerTableRow(summonerCreatedInDB)
+            })
 }
+
+function createSummonerTableRow(summoner) {
+    const summonersTableRow = document.createElement("tr");
+    summonersTableRow.id = summoner.id;
+
+    summonersTableBody.appendChild(summonersTableRow);
+
+    constructSummonersTableRow(summonersTableRow, summoner);
+}
+
+function constructSummonersTableRow(summonersTableRow, summoner) {
+    summonersTableRow.innerHTML = `
+            <td>
+                <a href="../matches/matches.html?generatedId=${summoner.generatedId}">
+                    <p class="row-summoners-generated-id">${summoner.generatedId}</p>
+                </a>
+            </td>
+            <td>
+                <p class="row-summoners-accountId">${summoner.accountId}</p>
+            </td>
+            <td>
+                <p class="row-summoners-id">${summoner.id}</p>
+            </td>
+            <td>
+                <p class="row-summoners-name">${summoner.name}</p>
+            </td>
+            <td>
+                <p class="row-summoners-profile-icon-id">${summoner.profileIconId}</p>
+            </td>
+            <td>
+                <p class="row-summoners-puuid">${summoner.puuid}</p>
+            </td>
+            <td>
+                <p class="row-summoners-revision-date">${summoner.revisionDate}</p>
+            </td>
+            <td>
+                <p class="row-summoners-summoner-level">${summoner.summonerLevel}</p>
+            </td>
+            `;
+
+}
+
+
+
 
 
 
