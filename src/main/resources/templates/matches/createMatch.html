@@ -8,7 +8,6 @@
 
 <h1>Matches</h1>
 
-<button onclick="createMatch">Save match</button>
 
 <div id="create-match-wrapper">
     <input id="create-match-startDate" type="text" placeholder="Start date">
@@ -28,16 +27,19 @@
         <option>Win</option>
         <option>Loss</option>
     </select>
-    <select id="create-match-champion">Champion
-        <option>Zed</option>
-        <option>Kayn</option>
+    <select id="create-match-honor">
+        <option>Stayed Cool</option>
+        <option>Great Shotcalling</option>
+        <option>GG</option>
     </select>
+    <input id="create-match-champion" type="number" min="1" placeholder="Champion ID">
+
+    <button onclick="createMatch()">Save match</button>
 
 </div>
 <script src="../global.js"></script>
-<script src="../index/index.js"></script>
 <script src="./createMatch.js"></script>
-<script src="./matches.js"></script>
+<!--<script src="./matches.js"></script>-->
 <script src="./editMatch.js"></script>
 
 </body>
