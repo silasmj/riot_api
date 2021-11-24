@@ -9,17 +9,20 @@ function createMatch() {
     const role = document.getElementById("create-match-role").value;
     const type = document.getElementById("create-match-type").value;
     const win = document.getElementById("create-match-win").value;
-    const champion = document.getElementById("create-match-champion").value
-};
+    const honor = document.getElementById("create-match-honor").value;
+    const champion = document.getElementById("create-match-champion").value;
+
 
     const newMatch = {
         startDate: startDate,
         role: role,
         type: type,
         win: win,
+        honor: honor,
         champion: champion,
         generatedId: queryId
     };
+
 
     fetch(baseURL + "/matches", {
         method: "POST",
@@ -30,9 +33,10 @@ function createMatch() {
     })
         .then(response => {
             if (response.status === 200) {
+                createMatch(newMatch);
                 console.log(response)
-                /*createMatch(newMatch);*/
             } else {
                 console.log("Match not created.", response.status);
             }
         });
+}
