@@ -38,6 +38,22 @@ function constructMatchesTableRow(matchesTableRow, matches) {
     <td>
         <p class="row-match-champion">${matches.champion.id}</p>
     </td>
-    
+    <td>
+         <button id="update-button-${matches.id}">🥯</button>            
+    </td>
+    <td>
+          <button onclick="deleteGallery(${matches.id})">❌</button>            
+    </td>
     `;
+}
+function deleteGallery(matchesId) {
+    fetch(baseURL + "/matches/" + matchesId, {
+        method: "DELETE"
+    }).then(response => {
+        if (response.status === 200) {
+            document.getElementById(matchesId).remove();
+        } else {
+            console.log(response.status);
+        }
+    });
 }
