@@ -53,8 +53,8 @@ function updateMatchesInBackend(matchesId) {
         role: document.getElementById(`update-matches-role-${matchesId}`).value,
         win: document.getElementById(`update-matches-win-${matchesId}`).value,
         honor:  document.getElementById(`update-matches-honor-${matchesId}`).value,
-        summoner: document.getElementById(`update-matches-summoner-${matchesId}`).value,
-        champion: document.getElementById(`update-matches-champion-${matchesId}`).value
+        summoner: {generatedId: document.getElementById(`update-matches-summoner-${matchesId}`).value},
+        champion: {id: document.getElementById(`update-matches-champion-${matchesId}`).value}
     };
 
     fetch(baseURL + "/matches/" + matchesId, {
