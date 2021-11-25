@@ -6,10 +6,21 @@
 </head>
 <body>
 <h1>Matches</h1>
+
+<input id="name-search" placeholder="Insert name">
+<button onclick="fetchSearchSummoner()">Search</button>
+
+<h3 id="summoner-name"></h3>
+<h4 id="summoner-level"></h4>
+<h4 id="summoner-id"></h4>
+<h4 id="summoner-accountId"></h4>
+<h4 id="summoner-revisionDate"></h4>
+<h4 id="summoner-profileIconId"></h4>
+<h4 id="summoner-puuid"></h4>
+
 <a href="./createMatch.html">
     <button>Create Match</button>
 </a>
-<input id="name-search" placeholder="Insert name">
 <table>
     <thead>
     <tr>
@@ -27,6 +38,7 @@
     <tbody id="matches-tbody"></tbody>
 </table>
 
+<script src="../index/index.js"></script>
 <script src="../global.js"></script>
 <script src="./matches.js"></script>
 <script src="../lib/HTMLescape.js"></script>

@@ -1,6 +1,24 @@
 const key = "RGAPI-b66df095-76c2-433a-b58a-89453b401dd0"
 const summonersTableBody = document.getElementById("summoners-tbody");
 
+let searchSummoner = "doublelift";
+function fetchSearchSummoner() {
+    searchSummoner = document.getElementById("name-search").value;
+    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + searchSummoner + "?api_key=" + key)
+        .then(response => response.json())
+        .then(summoner => {
+            document.getElementById("summoner-name").innerText = summoner.name;
+            document.getElementById("summoner-level").innerText = summoner.summonerLevel;
+            document.getElementById("summoner-id").innerText = summoner.id;
+            document.getElementById("summoner-accountId").innerText = summoner.accountId;
+            document.getElementById("summoner-revisionDate").innerText = summoner.revisionDate;
+            document.getElementById("summoner-profileIconId").innerText = summoner.profileIconId;
+            document.getElementById("summoner-puuid").innerText = summoner.puuid;
+        })
+
+}
+
+
 
 fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/doublelift?api_key=" + key)
     .then(response => response.json())

@@ -4,15 +4,8 @@ fetch(baseURL + "/matches")
     .then(response => response.json())
         .then(result => {
             result.map(createMatchTableRow)
-            filteredResult = result;
         })
 
-document.getElementById("name-search").addEventListener("input", handleSearchName)
-
-function handleSearchName(event) {
-    matchesTableBody.innerHTML = "";
-    filteredResult.filter(result => result.name.toLowerCase().includes(event.target.value.toLowerCase())).map(createMatchTableRow);
-}
 
 function createMatchTableRow(matches) {
     const matchesTableRow = document.createElement("tr");
@@ -41,7 +34,7 @@ function constructMatchesTableRow(matchesTableRow, matches) {
         <p class="row-match-honor">${matches.honor}</p>
     </td>
     <td>
-        <p class="row-match-summoner">${matches.summoner.generatedId}</p>
+        <p class="row-match-summoner">${(matches.summoner.generatedId)}</p>
     </td>
     <td>
         <p class="row-match-champion">${matches.champion.id}</p>
