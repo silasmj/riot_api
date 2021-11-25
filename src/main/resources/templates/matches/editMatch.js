@@ -18,10 +18,10 @@ function updateMatch(matches) {
             <input id="update-matches-honor-${matches.id}" value="${matches.honor}">
        </td>
         <td>
-            <input id="update-matches-summoner-${matches.id}" type="text" value="${matches.summoner.name}">
+              <input id="update-matches-summoner-${matches.id}" type="text" value="${matches.summoner.generatedId}">
        </td>
         <td>
-            <input id="update-matches-champion-${matches.id}" type="text" value="${matches.champion.name}">
+              <input id="update-matches-champion-${matches.id}" type="text" value="${matches.champion.id}">
        </td> 
        <td>
             <button id="cancel-update-${matches.id}">✖️</button>
@@ -31,6 +31,7 @@ function updateMatch(matches) {
             <button onclick="deleteMatch(${matches.id})">❌</button>
        </td>
     `;
+
     document.getElementById(`cancel-update-${matches.id}`)
         .addEventListener("click", () => undoUpdateTableRow(matches));
 

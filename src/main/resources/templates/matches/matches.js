@@ -41,10 +41,10 @@ function constructMatchesTableRow(matchesTableRow, matches) {
         <p class="row-match-honor">${matches.honor}</p>
     </td>
     <td>
-        <p class="row-match-generatedid">${matches.summoner.name}</p>
+        <p class="row-match-summoner">${matches.summoner.generatedId}</p>
     </td>
     <td>
-        <p class="row-match-champion">${matches.champion.name}</p>
+        <p class="row-match-champion">${matches.champion.id}</p>
     </td>
     <td>
          <button id="update-button-${matches.id}">🥯</button>            

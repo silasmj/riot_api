@@ -1,4 +1,4 @@
-const key = "RGAPI-b9ad3ebf-a01d-4e52-a690-2137c6d4fa55"
+const key = "RGAPI-b66df095-76c2-433a-b58a-89453b401dd0"
 const summonersTableBody = document.getElementById("summoners-tbody");
 
 

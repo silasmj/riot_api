@@ -1,7 +1,10 @@
 package com.example.riot_api.controllers;
 
+import com.example.riot_api.DTO.MatchEditDTO;
+import com.example.riot_api.DTO.MatchesDTO;
 import com.example.riot_api.models.Match;
 import com.example.riot_api.models.Summoner;
+import com.example.riot_api.repositories.ChampionRepository;
 import com.example.riot_api.repositories.MatchRepository;
 import com.example.riot_api.repositories.SummonerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,9 @@ public class Matches {
 
     @Autowired
     SummonerRepository summoner;
+
+    @Autowired
+    ChampionRepository champion;
 
     @GetMapping("/matches")
     public List<Match> getMatches(){
@@ -43,18 +49,17 @@ public class Matches {
     }
 
     @PatchMapping("/matches/{id}")
-    public String patchGalleryById(@PathVariable Long id, @RequestBody Match matchToUpdate) {
+    public MatchEditDTO patchGalleryById(@PathVariable Long id, @RequestBody Match matchToUpdate) {
         return match.findById(id).map(foundMatch -> {
             if (matchToUpdate.getStartDate() != null) foundMatch.setStartDate(matchToUpdate.getStartDate());
             if (matchToUpdate.getType() != null) foundMatch.setType(matchToUpdate.getType());
             if (matchToUpdate.getRole() != null) foundMatch.setRole(matchToUpdate.getRole());
             if (matchToUpdate.getWin() != null) foundMatch.setWin(matchToUpdate.getWin());
             if (matchToUpdate.getHonor() != null) foundMatch.setHonor(matchToUpdate.getHonor());
-            if (matchToUpdate.getSummoner().getName() != null) foundMatch.setSummoner(matchToUpdate.getSummoner());
-            if (matchToUpdate.getChampion().getName() != null) foundMatch.setChampion(matchToUpdate.getChampion());
-
-            match.save(foundMatch);
-            return "Artist saved";
-        }).orElse("Artist not found");
+            if (matchToUpdate.getSummoner() != null && matchToUpdate.getSummoner().getGeneratedId() != null) foundMatch.setSummoner(matchToUpdate.getSummoner());
+            if (matchToUpdate.getChampion() != null && matchToUpdate.getChampion().getId() != null) foundMatch.setChampion(matchToUpdate.getChampion());
+            Match createdMatch = match.save(foundMatch);
+            return new MatchEditDTO(createdMatch, matchToUpdate.getSummoner().getGeneratedId(), matchToUpdate.getChampion().getId());
+            }).orElse(new MatchEditDTO("Cant save data"));
     }
 }
