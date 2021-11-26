@@ -36,9 +36,11 @@ public class Matches {
         return match.findById(id).get();
     }
 
-    @PostMapping("/matches")
-    public Match addMatch(@RequestBody Match newMatch){
+    @PostMapping("/matches/{summoner_id}/{champion_id}")
+    public Match addMatch(@RequestBody Match newMatch, @PathVariable Long summoner_id, @PathVariable Long champion_id){
         newMatch.setId(null);
+        newMatch.setSummoner(summoner.findById(summoner_id).get());
+        newMatch.setChampion(champion.findById(champion_id).get());
 
         return match.save(newMatch);
     }
