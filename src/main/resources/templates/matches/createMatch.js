@@ -11,6 +11,7 @@ function createMatch() {
     const win = document.getElementById("create-match-win").value;
     const honor = document.getElementById("create-match-honor").value;
     const champion = document.getElementById("create-match-champion").value;
+    const summonerId = document.getElementById("create-match-summonerId").value;
 
 
     const newMatch = {
@@ -18,13 +19,11 @@ function createMatch() {
         role: role,
         type: type,
         win: win,
-        honor: honor,
-        champion: champion,
-        generatedId: queryId
+        honor: honor
     };
 
 
-    fetch(baseURL + "/matches", {
+    fetch(baseURL + "/matches/" + summonerId + "/" + champion, {
         method: "POST",
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -33,7 +32,7 @@ function createMatch() {
     })
         .then(response => {
             if (response.status === 200) {
-                createMatch(newMatch);
+                /*createMatch();*/
                 console.log(response)
             } else {
                 console.log("Match not created.", response.status);
