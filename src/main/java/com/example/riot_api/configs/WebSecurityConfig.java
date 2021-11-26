@@ -34,11 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll() //allows all
-                .antMatchers("/swagger-ui").hasRole("ADMIN") //only admins are allowed to access endpoint
+                .antMatchers("/matches").hasRole("ADMIN") //only admins are allowed to access endpoint
                 .antMatchers("/url").hasAnyRole("role", "ADMIN") //anyone with roles
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .defaultSuccessUrl("/matches", true)
                 .and()
                 .logout()
                 .permitAll();
